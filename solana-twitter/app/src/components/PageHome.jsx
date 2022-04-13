@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchTweets } from "../api/fetch-tweets";
+import TweetForm from "./TweetForm";
 
 const PageHome = () => {
   const [tweets, setTweets] = useState([]);
@@ -13,7 +14,11 @@ const PageHome = () => {
 
   const addTweet = (tweet) => setTweets(tweet);
 
-  return <>Home</>;
+  return (
+    <>
+      <TweetForm addTweet={addTweet} />
+    </>
+  );
 };
 
 export default PageHome;
