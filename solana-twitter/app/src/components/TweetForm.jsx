@@ -1,19 +1,29 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { sendTweet } from "../api/send-tweet";
+import { useAutoresizeTextarea } from "../helpers/useAutoresizeTextarea";
 
 const TweetForm = ({ forcedTopic, addTweet }) => {
   const [content, setContent] = useState(null);
   const [topic, setTopic] = useState(null);
-  const [isConnected, setIsConnected] = useState(true);
+  const [isConnected, setIsConnected] = useState(true); // TODO: Check connected wallet.
+
+  const textarea = useRef();
+  useAutoresizeTextarea(textarea.current);
 
   const effectiveTopic = forcedTopic ?? topic;
-  const characterLimit = 280 - content?.length || 280;
+  const characterLimit = content ? 280 - content?.length : 280;
   const canTweet = content && characterLimit > 0;
+
+  const characterLimitColour = useMemo(() => {
+    if (characterLimit < 0) return "text-red-500";
+    if (characterLimit <= 10) return "text-yellow-500";
+    return "text-gray-400";
+  }, [characterLimit]);
 
   const send = async () => {
     if (!canTweet) return;
     const tweet = await sendTweet(effectiveTopic, content);
-    // emit("added", tweet);
+    addTweet(tweet);
     setTopic(null);
     setContent(null);
   };
@@ -23,6 +33,7 @@ const TweetForm = ({ forcedTopic, addTweet }) => {
       {isConnected ? (
         <div className="px-8 py-4 border-b">
           <textarea
+            ref={textarea}
             rows="1"
             className="text-xl w-full focus:outline-none resize-none mb-3"
             placeholder="What's happening?"
@@ -56,11 +67,11 @@ const TweetForm = ({ forcedTopic, addTweet }) => {
               </div>
             </div>
             <div className="flex items-center space-x-6 m-2 ml-auto">
-              <div className="characterLimitColour">{characterLimit} left</div>
+              <div className={characterLimitColour}>{characterLimit} left</div>
 
               <button
                 className={`text-white px-4 py-2 rounded-full font-semibold ${canTweet ? "bg-pink-500" : "bg-pink-300 cursor-not-allowed"}`}
-                disabled="! canTweet"
+                disabled={!canTweet}
                 onClick={send}
               >
                 Tweet

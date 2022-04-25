@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.activeLink .isNotActive {
+  display: none;
+}
+
+.activeLink .isActive {
+  display: block;
+}
+
+.nonActiveLink .isNotActive {
+  display: block;
+}
+
+.nonActiveLink .isActive {
+  display: none;
+}

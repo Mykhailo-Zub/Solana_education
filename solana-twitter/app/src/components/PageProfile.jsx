@@ -3,7 +3,7 @@ import { fetchTweets } from "../api/fetch-tweets";
 import TweetForm from "./TweetForm";
 import TweetList from "./TweetList";
 
-const PageHome = () => {
+const PageProfile = () => {
   const [tweets, setTweets] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,11 +20,15 @@ const PageHome = () => {
   };
 
   return (
+    // TODO: Check connected wallet
     <>
+      <div v-if="true" className="border-b px-8 py-4 bg-gray-50">
+        B1AfN7AgpMyctfFbjmvRAvE1yziZFDb9XCwydBjJwtRN
+      </div>
       <TweetForm addTweet={addTweet} />
       <TweetList tweets={tweets} loading={loading} />
     </>
   );
 };
 
-export default PageHome;
+export default PageProfile;
