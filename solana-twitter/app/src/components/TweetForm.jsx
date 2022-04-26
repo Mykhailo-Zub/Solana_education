@@ -1,3 +1,4 @@
+import { useWallet } from "@solana/wallet-adapter-react";
 import React, { useMemo, useRef, useState } from "react";
 import { sendTweet } from "../api/send-tweet";
 import { useAutoresizeTextarea } from "../helpers/useAutoresizeTextarea";
@@ -5,7 +6,7 @@ import { useAutoresizeTextarea } from "../helpers/useAutoresizeTextarea";
 const TweetForm = ({ forcedTopic, addTweet }) => {
   const [content, setContent] = useState(null);
   const [topic, setTopic] = useState(null);
-  const [isConnected, setIsConnected] = useState(true); // TODO: Check connected wallet.
+  const { connected } = useWallet();
 
   const textarea = useRef();
   useAutoresizeTextarea(textarea.current);
@@ -30,7 +31,7 @@ const TweetForm = ({ forcedTopic, addTweet }) => {
 
   return (
     <>
-      {isConnected ? (
+      {connected ? (
         <div className="px-8 py-4 border-b">
           <textarea
             ref={textarea}

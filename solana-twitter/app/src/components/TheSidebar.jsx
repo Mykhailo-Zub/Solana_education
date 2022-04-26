@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { WalletModalProvider, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const TheSidebar = () => {
+  const { connected } = useWallet();
   return (
     <aside className="flex flex-col items-center md:items-stretch space-y-2 md:space-y-4">
       <NavLink to="/" className="inline-block rounded-full hover:bg-gray-100 p-3 md:self-start">
@@ -75,32 +78,42 @@ const TheSidebar = () => {
           </svg>
           <div className="text-xl hidden ml-4 md:block">Users</div>
         </NavLink>
-        {/* <!-- TODO Check connected wallet. --> */}
-        <NavLink
-          to="/profile"
-          className={({ isActive }) =>
-            isActive
-              ? "font-bold rounded-full hover:bg-gray-100 p-3 md:w-full inline-flex items-center activeLink"
-              : "rounded-full hover:bg-gray-100 p-3 md:w-full inline-flex items-center nonActiveLink"
-          }
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="isActive h-8 w-8 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" className="isNotActive h-8 w-8 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
-          <div className="text-xl hidden ml-4 md:block">Profile</div>
-        </NavLink>
+        {connected ? (
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive
+                ? "font-bold rounded-full hover:bg-gray-100 p-3 md:w-full inline-flex items-center activeLink"
+                : "rounded-full hover:bg-gray-100 p-3 md:w-full inline-flex items-center nonActiveLink"
+            }
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="isActive h-8 w-8 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="isNotActive h-8 w-8 text-gray-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              />
+            </svg>
+            <div className="text-xl hidden ml-4 md:block">Profile</div>
+          </NavLink>
+        ) : (
+          ""
+        )}
       </div>
       <div className="fixed bottom-8 right-8 md:static w-48 md:w-full">
-        {/* <!-- TODO Connect wallet --> */}
-        <div className="bg-pink-500 text-center w-full text-white rounded-full px-4 py-2">Select a wallet</div>
+        <WalletModalProvider>
+          <WalletMultiButton />
+        </WalletModalProvider>
       </div>
     </aside>
   );
