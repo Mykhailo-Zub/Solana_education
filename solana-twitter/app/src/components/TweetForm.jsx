@@ -1,6 +1,6 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import React, { useMemo, useRef, useState } from "react";
-import { sendTweet } from "../api/send-tweet";
+import { SendTweet } from "../api/send-tweet";
 import { useAutoresizeTextarea } from "../helpers/useAutoresizeTextarea";
 
 const TweetForm = ({ forcedTopic, addTweet }) => {
@@ -23,7 +23,7 @@ const TweetForm = ({ forcedTopic, addTweet }) => {
 
   const send = async () => {
     if (!canTweet) return;
-    const tweet = await sendTweet(effectiveTopic, content);
+    const tweet = await SendTweet(effectiveTopic, content);
     addTweet(tweet);
     setTopic(null);
     setContent(null);

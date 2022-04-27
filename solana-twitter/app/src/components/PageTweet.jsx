@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PublicKey } from "@solana/web3.js";
 import TweetCard from "./TweetCard";
-import { getTweet } from "../api/get-tweet";
+import { GetTweet } from "../api/get-tweet";
 import { useParams } from "react-router";
 
 const PageTweet = () => {
@@ -15,7 +15,7 @@ const PageTweet = () => {
       const { tweet } = params;
       try {
         setLoading(true);
-        const fetchedTweet = await getTweet(new PublicKey(tweet));
+        const fetchedTweet = await GetTweet(new PublicKey(tweet));
         setTweet(fetchedTweet);
       } catch (e) {
         setTweet(null);

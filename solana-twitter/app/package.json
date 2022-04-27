@@ -13,6 +13,8 @@
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.4",
+    "dayjs": "^1.11.1",
+    "my-project-depends": "file:../target/idl/solana_twitter.json",
     "postcss": "^8.4.12",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -20,8 +22,7 @@
     "react-scripts": "^5.0.1",
     "stream-browserify": "^3.0.0",
     "tailwindcss": "^3.0.24",
-    "web-vitals": "^2.1.4",
-    "my-project-depends": "file:../target/idl/solana_twitter.json"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

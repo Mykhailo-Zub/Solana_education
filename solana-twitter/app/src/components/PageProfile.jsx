@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchTweets } from "../api/fetch-tweets";
+import { authorFilter, FetchTweets } from "../api/fetch-tweets";
 import { useWorkspace } from "../helpers/useWorkspace";
 import TweetForm from "./TweetForm";
 import TweetList from "./TweetList";
@@ -11,10 +11,11 @@ const PageProfile = () => {
   const { wallet } = useWorkspace();
 
   useEffect(() => {
-    fetchTweets()
+    if (!wallet) return;
+    FetchTweets([authorFilter(wallet.publicKey.toBase58())])
       .then(setTweets)
       .finally(() => setLoading(false));
-  }, []);
+  }, [wallet]);
 
   const addTweet = (tweet) => {
     const allTweets = [...tweets];

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { fetchTweets } from "../api/fetch-tweets";
+import { authorFilter, FetchTweets } from "../api/fetch-tweets";
 import TweetList from "./TweetList";
 import TweetSearch from "./TweetSearch";
 
@@ -13,13 +13,14 @@ const PageUsers = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const fetchAuthorTweets = async () => {
+  const fetchAuthorTweets = async (viewedAuthor) => {
     if (author === viewedAuthor) return;
     try {
       setLoading(true);
-      const fetchedTweets = await fetchTweets();
+      const fetchedTweets = await FetchTweets([authorFilter(viewedAuthor)]);
       setTweets(fetchedTweets);
-      setViewedAuthor(author);
+      setViewedAuthor(viewedAuthor);
+      setAuthor(viewedAuthor);
     } finally {
       setLoading(false);
     }
@@ -28,7 +29,7 @@ const PageUsers = () => {
   useEffect(() => {
     const { author } = params;
     if (author) {
-      fetchAuthorTweets();
+      fetchAuthorTweets(author);
     } else {
       setTweets([]);
       setViewedAuthor(null);

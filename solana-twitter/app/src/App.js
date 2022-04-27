@@ -13,7 +13,14 @@ import PageUsers from "./components/PageUsers";
 import PageProfile from "./components/PageProfile";
 import PageTweet from "./components/PageTweet";
 import AppWrapper from "./components/AppWrapper";
-import { InitWorkspace } from "./helpers/useWorkspace";
+
+// Day.js
+import dayjs from 'dayjs'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(localizedFormat)
+dayjs.extend(relativeTime)
+
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 function App() {
@@ -27,7 +34,6 @@ function App() {
   // Only the wallets you configure here will be compiled into your application, and only the dependencies
   // of wallets that your users connect to will be loaded.
   const wallets = useMemo(() => [new PhantomWalletAdapter(), new SolflareWalletAdapter({ network })], [network]);
-  // InitWorkspace();
 
   return (
     <ConnectionProvider endpoint={endpoint}>

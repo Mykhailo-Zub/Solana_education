@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { fetchTweets } from "../api/fetch-tweets";
+import { FetchTweets, topicFilter } from "../api/fetch-tweets";
 import TweetForm from "./TweetForm";
 import TweetList from "./TweetList";
 import TweetSearch from "./TweetSearch";
@@ -17,13 +17,14 @@ const PageTopics = () => {
 
   const slugTopic = useSlug(topic);
 
-  const fetchTopicTweets = async () => {
+  const fetchTopicTweets = async (viewedTopic) => {
     if (slugTopic === viewedTopic) return;
     try {
       setLoading(true);
-      const fetchedTweets = await fetchTweets();
+      const fetchedTweets = await FetchTweets([topicFilter(viewedTopic)]);
       setTweets(fetchedTweets);
-      setViewedTopic(slugTopic);
+      setViewedTopic(viewedTopic);
+      setTopic(viewedTopic);
     } finally {
       setLoading(false);
     }
@@ -32,7 +33,7 @@ const PageTopics = () => {
   useEffect(() => {
     const { topic } = params;
     if (topic) {
-      fetchTopicTweets();
+      fetchTopicTweets(topic);
     } else {
       setTweets([]);
       setViewedTopic(null);

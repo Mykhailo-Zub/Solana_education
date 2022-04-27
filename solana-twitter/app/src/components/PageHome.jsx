@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchTweets } from "../api/fetch-tweets";
+import { FetchTweets } from "../api/fetch-tweets";
 import TweetForm from "./TweetForm";
 import TweetList from "./TweetList";
 
@@ -8,7 +8,7 @@ const PageHome = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchTweets()
+    FetchTweets()
       .then(setTweets)
       .finally(() => setLoading(false));
   }, []);
