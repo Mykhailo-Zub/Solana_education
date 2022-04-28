@@ -2,10 +2,12 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import React, { useMemo, useRef, useState } from "react";
 import { SendTweet } from "../api/send-tweet";
 import { useAutoresizeTextarea } from "../helpers/useAutoresizeTextarea";
+import LoadingPopup from "./LoadingPopup";
 
 const TweetForm = ({ forcedTopic, addTweet }) => {
   const [content, setContent] = useState(null);
   const [topic, setTopic] = useState(null);
+  const [loadingModal, setLoadingModal] = useState(false);
   const { connected } = useWallet();
 
   const textarea = useRef();
@@ -23,7 +25,9 @@ const TweetForm = ({ forcedTopic, addTweet }) => {
 
   const send = async () => {
     if (!canTweet) return;
+    setLoadingModal(true);
     const tweet = await SendTweet(effectiveTopic, content);
+    setLoadingModal(false);
     addTweet(tweet);
     setTopic(null);
     setContent(null);
@@ -31,6 +35,7 @@ const TweetForm = ({ forcedTopic, addTweet }) => {
 
   return (
     <>
+      {loadingModal ? <LoadingPopup /> : ""}
       {connected ? (
         <div className="px-8 py-4 border-b">
           <textarea

@@ -3,12 +3,22 @@ seeds = false
 [programs.localnet]
 solana_twitter = "BRdpbYKwQQ112omLmQtRGkDvb8nmH2gJvyxkBzJjzhnD"
 
+[programs.devnet]
+solana_twitter = "BRdpbYKwQQ112omLmQtRGkDvb8nmH2gJvyxkBzJjzhnD"
+
+[programs.mainnet]
+solana_twitter = "BRdpbYKwQQ112omLmQtRGkDvb8nmH2gJvyxkBzJjzhnD"
+
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/home/miha/.config/solana/id.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+copy-idl = "mkdir -p app/src/idl && cp target/idl/solana_twitter.json app/src/idl/solana_twitter.json"
+
+[workspace]
+types = "app/src/idl/"

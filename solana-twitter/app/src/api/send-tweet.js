@@ -1,6 +1,8 @@
 import { web3 } from "@project-serum/anchor";
+import { PublicKey } from "@solana/web3.js";
 import { useWorkspace } from "../helpers/useWorkspace";
 import { Tweet } from "../models/Tweet";
+import { GetTweet } from "./get-tweet";
 
 // 1. Define the sendTweet endpoint.
 export const SendTweet = async (topic, content) => {
@@ -20,8 +22,23 @@ export const SendTweet = async (topic, content) => {
   });
 
   // 4. Fetch the newly created account from the blockchain.
-  const tweetAccount = await program.account.tweet.fetch(tweet.publicKey);
+  const tweetAccount = await new Promise((resolve) => {
+    let resp;
+    let interval = setInterval(async () => {
+      if (resp) {
+        clearInterval(interval);
+        resolve(resp);
+      } else {
+        try {
+          resp = await program.account.tweet.fetch(tweet.publicKey);
+        } catch {
+          resp = false;
+        }
+      }
+    }, 500);
+  });
 
   // 5. Wrap the fetched account in a Tweet model so our frontend can display it.
   return new Tweet(tweet.publicKey, tweetAccount);
-};
+  // return true;
+};;
