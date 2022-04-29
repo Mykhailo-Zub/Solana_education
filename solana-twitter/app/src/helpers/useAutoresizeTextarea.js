@@ -11,5 +11,6 @@ export const useAutoresizeTextarea = (element) => {
     resizeTextarea();
     element.addEventListener("input", resizeTextarea);
     return () => element?.removeEventListener("input", resizeTextarea);
+    // eslint-disable-next-line
   }, [element]);
 };

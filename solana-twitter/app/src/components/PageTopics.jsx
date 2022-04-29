@@ -38,6 +38,7 @@ const PageTopics = () => {
       setTweets([]);
       setViewedTopic(null);
     }
+    // eslint-disable-next-line
   }, [params]);
 
   const search = () => {

@@ -34,6 +34,7 @@ const PageUsers = () => {
       setTweets([]);
       setViewedAuthor(null);
     }
+    // eslint-disable-next-line
   }, [params]);
 
   const search = () => {

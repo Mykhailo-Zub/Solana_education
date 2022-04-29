@@ -1,8 +1,6 @@
 import { web3 } from "@project-serum/anchor";
-import { PublicKey } from "@solana/web3.js";
 import { useWorkspace } from "../helpers/useWorkspace";
 import { Tweet } from "../models/Tweet";
-import { GetTweet } from "./get-tweet";
 
 // 1. Define the sendTweet endpoint.
 export const SendTweet = async (topic, content) => {
@@ -41,4 +39,4 @@ export const SendTweet = async (topic, content) => {
   // 5. Wrap the fetched account in a Tweet model so our frontend can display it.
   return new Tweet(tweet.publicKey, tweetAccount);
   // return true;
-};;
+};
