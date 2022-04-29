@@ -15,6 +15,7 @@ export const useWorkspace = () => workspace;
 export const InitWorkspace = () => {
   const wallet = useAnchorWallet();
   const connection = new Connection(clusterUrl, commitment);
+  // eslint-disable-next-line
   const provider = useMemo(() => new AnchorProvider(connection, wallet, { preflightCommitment, commitment }), [wallet]);
   const program = useMemo(() => new Program(idl, programID, provider), [provider]);
 
@@ -23,5 +24,6 @@ export const InitWorkspace = () => {
     connection,
     provider,
     program,
+    programID,
   };
 };

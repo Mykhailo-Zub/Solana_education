@@ -2,6 +2,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import React, { useMemo, useRef, useState } from "react";
 import { SendTweet } from "../api/send-tweet";
 import { useAutoresizeTextarea } from "../helpers/useAutoresizeTextarea";
+import { useSlug } from "../helpers/useSlug";
 import LoadingPopup from "./LoadingPopup";
 
 const TweetForm = ({ forcedTopic, addTweet }) => {
@@ -10,10 +11,12 @@ const TweetForm = ({ forcedTopic, addTweet }) => {
   const [loadingModal, setLoadingModal] = useState(false);
   const { connected } = useWallet();
 
+  const slugTopic = useSlug(topic);
+
   const textarea = useRef();
   useAutoresizeTextarea(textarea.current);
 
-  const effectiveTopic = forcedTopic ?? topic;
+  const effectiveTopic = forcedTopic ?? slugTopic;
   const characterLimit = content ? 280 - content?.length : 280;
   const canTweet = content && characterLimit > 0;
 
