@@ -1,0 +1,19 @@
+Streaming transaction logs mentioning Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS. Confirmed commitment
+Transaction executed in slot 1:
+  Signature: 2VfwQkZJyeWeHwrYLxyCi16XKxnnDYj2fPE7cXDdTHqfVV3ppjH2jGWAfpfSpoViekUtGSTy88wYNHbQMB2jNv3X
+  Status: Ok
+  Log Messages:
+    Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS invoke [1]
+    Program log: Instruction: StartStuffOff
+    Program 11111111111111111111111111111111 invoke [2]
+    Program 11111111111111111111111111111111 success
+    Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS consumed 12047 of 200000 compute units
+    Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS success
+Transaction executed in slot 2:
+  Signature: 3KWyBVLCNp52s61pzn8RVeL415ye5mtXZZNFPRikahKVhSW6MyuiAJvKj3kaSChD9f7UsxWq9DwnhWUpkRVsCUiX
+  Status: Ok
+  Log Messages:
+    Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS invoke [1]
+    Program log: Instruction: AddGif
+    Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS consumed 4838 of 200000 compute units
+    Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS success
