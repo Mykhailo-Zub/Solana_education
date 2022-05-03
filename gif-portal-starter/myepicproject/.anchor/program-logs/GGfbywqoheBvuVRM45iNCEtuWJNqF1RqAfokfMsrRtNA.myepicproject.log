@@ -1,0 +1,19 @@
+Streaming transaction logs mentioning GGfbywqoheBvuVRM45iNCEtuWJNqF1RqAfokfMsrRtNA. Confirmed commitment
+Transaction executed in slot 131687359:
+  Signature: 4UBDbXsTkkmkpanGg9EsRnwgwZaaPcWbkuQMvSkp3a1GTTG65LCyif6hw1L7Zp1BrnuPn2dS7VCNtHJ8hsGRdhBV
+  Status: Ok
+  Log Messages:
+    Program GGfbywqoheBvuVRM45iNCEtuWJNqF1RqAfokfMsrRtNA invoke [1]
+    Program log: Instruction: StartStuffOff
+    Program 11111111111111111111111111111111 invoke [2]
+    Program 11111111111111111111111111111111 success
+    Program GGfbywqoheBvuVRM45iNCEtuWJNqF1RqAfokfMsrRtNA consumed 12151 of 1400000 compute units
+    Program GGfbywqoheBvuVRM45iNCEtuWJNqF1RqAfokfMsrRtNA success
+Transaction executed in slot 131687365:
+  Signature: VC3BQQXnZBt8ZT1oxbFPP7pbvWTth8Lx97EofkU39W1uLTMBH5qEMLoms2Fi968b4Xv4iCauuKTnokDSBN8CspK
+  Status: Ok
+  Log Messages:
+    Program GGfbywqoheBvuVRM45iNCEtuWJNqF1RqAfokfMsrRtNA invoke [1]
+    Program log: Instruction: AddGif
+    Program GGfbywqoheBvuVRM45iNCEtuWJNqF1RqAfokfMsrRtNA consumed 4979 of 1400000 compute units
+    Program GGfbywqoheBvuVRM45iNCEtuWJNqF1RqAfokfMsrRtNA success

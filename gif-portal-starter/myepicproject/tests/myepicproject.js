@@ -7,8 +7,8 @@ const main = async () => {
   console.log("🚀 Starting test...");
 
   // Create and set the provider. We set it before but we needed to update it, so that it can communicate with our frontend!
-  // const provider = anchor.AnchorProvider.env();
-  const provider = anchor.Provider.local("http://127.0.0.1:8899");
+  const provider = anchor.Provider.env();
+  // const provider = anchor.Provider.local("http://127.0.0.1:8899");
   anchor.setProvider(provider);
 
   const program = anchor.workspace.Myepicproject;
@@ -44,7 +44,7 @@ const main = async () => {
   console.log("👀 GIF Count", account.totalGifs.toString());
 
   console.log("👀 GIF List", account.gifList);
-};
+};;;
 
 const runMain = async () => {
   try {
